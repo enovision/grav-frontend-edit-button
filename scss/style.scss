@@ -1,6 +1,8 @@
-$button-color: #999999;
-$button-bg-color: #f6f6f6;
-$button-border-color: #dbdbdb;
+$button-color: rgba(255,255,255,0.85);
+$button-color-hover: #fff;
+$button-bg-color: #41bea8;
+$button-bg-color-hover: #5ec8b5;
+$button-border-color: #0ca709;
 
 #frontend-edit-button {
   position: fixed;
@@ -36,4 +38,9 @@ $button-border-color: #dbdbdb;
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+}
+
+.frontend-edit-button:hover {
+    background: $button-bg-color-hover;
+    color: $button-color-hover;
 }
