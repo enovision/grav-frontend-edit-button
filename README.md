@@ -89,7 +89,7 @@ This plugin has a simple mechanism build in that will react on a `blur` and `foc
 The moment you click the button it will open the Dashboard in another tab in the browser. The moment you click back
 on the page you have just left by clicking on the button, this page will automatically refresh.
 
-This refresh will always execute when you leave the tab and click on the tab.
+This refresh will always execute when you leave (blur) the tab and click back (focus) on the tab with the presented page.
 
 ### CSS and JavaScript
 
