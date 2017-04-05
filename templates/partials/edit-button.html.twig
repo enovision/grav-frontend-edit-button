@@ -1,0 +1,30 @@
+{% set _showIcon = config.showIcon|defined(true) %}
+{% set _showLabel = config.showLabel|defined(true) %}
+
+{% if _showLabel == false and _showIcon == false %}
+    {% set _showLabel = true %}
+{% endif %}
+
+<div id='frontend-edit-button' class='{{ vertical }} {{ horizontal }}'>
+    <div class='page-item' data-nav-id='/grav-cms{{ pageUrl }}'>
+        <a class='page-edit frontend-edit-button' target='_blank' href='{{ editUrl }}'>
+            {% if _showIcon == true %}
+                <i class='fa fa-edit'></i>
+            {% endif %}
+            {% if _showLabel == true %}
+                <span class="label">{{ 'PLUGIN_FRONTEND_EDIT_BUTTON.BUTTON_TEXT'|t }}</span>
+            {% endif %}
+        </a>
+    </div>
+</div>
+
+{% block stylesheets %}
+    {% do assets.addCss('plugin://frontend-edit-button/css-compiled/style.css',100) %}
+    {{ assets.css() }}
+{% endblock %}
+
+{% block javascripts %}
+    {% do assets.addJs('plugin://frontend-edit-button/js/script.js',100) %}
+    {{ assets.js() }}
+{% endblock %}
+
