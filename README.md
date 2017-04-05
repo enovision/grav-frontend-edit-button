@@ -3,17 +3,18 @@
 The **Frontpage Edit Button** Plugin is for [Grav CMS](http://github.com/getgrav/grav). 
 
 This plugin adds an 'edit this page' button on the frontend pages when logged in with a user account with
-admin rights. After clicking the button it will open the page in another tab in your browser.
+admin rights. After clicking the button it will open the Admin Dashboard in another tab in your browser where you can start editing the page.
  
-IMPORTANT: If you have no admin rights (superuser), the button will **not** show up! 
+IMPORTANT (1): If no user is logged in as administrator (superuser), the button will **never** show up! 
 
-It works also when you have an admin dashboard open in another tab of your browser. The moment you are 
-logged in and are able to edit pages, the button will show up on the frontpage. The moment you logout. You are not able to 
-edit the page that is currently shown. 
+IMPORTANT (2): You can't login from this plugin itself. You have to login by using the login to enter the Administrator Dashboard. 
+
+It will also work when you have an admin dashboard open in another tab of your browser. The moment you are logged in and are able to edit pages, the button will show up on the frontend pages. The moment you logout you are not able to edit any pages that are at that time displayed. The automatic refresh will prevent this. 
 
 ## Requirements
 
 This plugin requires that you have the following plugins installed and enabled:
+
 * admin 
 * login
 
