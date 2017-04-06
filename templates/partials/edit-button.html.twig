@@ -17,14 +17,3 @@
         </a>
     </div>
 </div>
-
-{% block stylesheets %}
-    {% do assets.addCss('plugin://frontend-edit-button/css-compiled/style.css',100) %}
-    {{ assets.css() }}
-{% endblock %}
-
-{% block javascripts %}
-    {% do assets.addJs('plugin://frontend-edit-button/js/script.js',100) %}
-    {{ assets.js() }}
-{% endblock %}
-
