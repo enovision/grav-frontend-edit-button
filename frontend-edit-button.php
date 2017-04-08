@@ -10,6 +10,8 @@
 namespace Grav\Plugin;
 
 use Grav\Common\Plugin;
+use Grav\Common\Uri;
+use Grav\Common\Page;
 use RocketTheme\Toolbox\Event\Event;
 
 /**
@@ -20,7 +22,6 @@ class FrontendEditButtonPlugin extends Plugin
 {
 
     private $_config = NULL;
-    private $_page = NULL;
 
     /**
      * @function getSubscribedEvents
@@ -55,6 +56,19 @@ class FrontendEditButtonPlugin extends Plugin
             return;
         }
 
+        // check for existence of a user account
+        $account_dir = $file_path = $this->grav['locator']->findResource('account://');
+        $user_check = glob($account_dir . '/*.yaml');
+
+        // If no users found, stop here !!!
+        if ($user_check == false || count((array)$user_check) == 0) {
+            dump($this->isAdminPath());
+
+            if (!$this->isAdminPath()) {
+                return;
+            }
+        }
+
         $config = $this->grav['config'];
         $plugins = $config->get('plugins');
 
@@ -80,13 +94,13 @@ class FrontendEditButtonPlugin extends Plugin
 
     /**
      * @event onPageContentProcessed
+     *
      * @param Event $event
      */
     public function onPageContentProcessed(Event $event)
     {
         $page = $event['page'];
         $this->_config = $this->mergeConfig($page);
-        $this->_page = $event['page'];
     }
 
     /**
@@ -98,7 +112,8 @@ class FrontendEditButtonPlugin extends Plugin
             return;
         }
 
-        $header = $this->_page->header();
+		$page = $this->grav['page'];
+        $header = $page->header();
 
         if (isset($header->protectEdit) && $header->protectEdit == true) {
             return;
@@ -112,18 +127,25 @@ class FrontendEditButtonPlugin extends Plugin
         $vertical = substr($position, 0, 1) === 't' ? 'top' : 'bottom';
         $horizontal = substr($position, 1, 1) === 'l' ? 'left' : 'right';
 
-        $page = $this->grav['page'];
         $pageUrl = $page->url(false, false, true, false);
+
+        /* otherwise the home page can't be edited */
+        if ($pageUrl == '/') {
+            $pageUrl .= $page->slug();
+        }
+
         $editUrl = '/admin/pages' . $pageUrl;
 
-        $insertThis = $twig->processTemplate('partials/edit-button.html.twig', array(
+        $params = array(
             'config'     => $this->_config,
-            'header'     => $this->_page->header(),
+            'header'     => $header,
             'horizontal' => $horizontal,
             'vertical'   => $vertical,
             'pageUrl'    => $pageUrl,
             'editUrl'    => $editUrl
-        ));
+        );
+
+        $insertThis = $twig->processTemplate('partials/edit-button.html.twig', $params);
 
         $pos = strpos($content, '<body', 0);
 
@@ -167,5 +189,29 @@ class FrontendEditButtonPlugin extends Plugin
     public function onTwigTemplatePaths()
     {
         $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
+    }
+
+    /**
+     * Check if the current route is under the admin path
+     *
+     * @return bool
+     */
+    private function isAdminPath()
+    {
+        $route = $this->config->get('plugins.admin.route');
+        if (!$route) {
+            return false;
+        }
+
+        $base = '/' . trim($route, '/');
+        $uri = $this->grav['uri'];
+
+        if ($uri->route() == $base || substr($uri->route(), 0,
+                strlen($base) + 1) == $base . '/'
+        ) {
+            return true;
+        }
+
+        return false;
     }
 }
