@@ -34,8 +34,9 @@ This will install the Frontpage Edit Button plugin into your `/user/plugins` dir
 
 In the user/plugins folder of your site:
 ```
-git clone enovision\grav-frontend-edit-button frontend-edit-button
+git clone https://github.com/enovision/grav-frontend-edit-button frontend-edit-button
 ```
+The **frontend-edit-button** at the the end of the the git clone is important !!! 
 
 
 ### Manual Installation
