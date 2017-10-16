@@ -15,8 +15,8 @@ It will also work when you have an admin dashboard open in another tab of your b
 
 This plugin requires that you have the following plugins installed and enabled:
 
-* [admin](https://github.com/getgrav/grav-plugin-admin) 
-* [login](https://github.com/getgrav/grav-plugin-login)
+* admin 
+* login
 
 ## Installation
 
@@ -38,6 +38,8 @@ You should now have all the plugin files under
 
     /your/site/grav/user/plugins/frontend-edit-button
 	
+> NOTE: This plugin is a modular component for Grav which requires [Grav](http://github.com/getgrav/grav) and the [Error](https://github.com/getgrav/grav-plugin-error) and [Problems](https://github.com/getgrav/grav-plugin-problems) to operate.
+
 ## Configuration
 
 Before configuring this plugin, you should copy the `user/plugins/frontend-edit-button/frontend-edit-button.yaml` to `user/config/plugins/frontend-edit-button.yaml` and only edit that copy.

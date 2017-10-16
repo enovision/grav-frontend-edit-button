@@ -62,7 +62,7 @@ class FrontendEditButtonPlugin extends Plugin
 
         // If no users found, stop here !!!
         if ($user_check == false || count((array)$user_check) == 0) {
-            dump($this->isAdminPath());
+            // dump($this->isAdminPath());
 
             if (!$this->isAdminPath()) {
                 return;
@@ -120,6 +120,7 @@ class FrontendEditButtonPlugin extends Plugin
         }
 
         $content = $this->grav->output;
+
         $twig = $this->grav['twig'];
 
         $position = $this->config->get('plugins.frontend-edit-button.position');
@@ -189,29 +190,5 @@ class FrontendEditButtonPlugin extends Plugin
     public function onTwigTemplatePaths()
     {
         $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
-    }
-
-    /**
-     * Check if the current route is under the admin path
-     *
-     * @return bool
-     */
-    private function isAdminPath()
-    {
-        $route = $this->config->get('plugins.admin.route');
-        if (!$route) {
-            return false;
-        }
-
-        $base = '/' . trim($route, '/');
-        $uri = $this->grav['uri'];
-
-        if ($uri->route() == $base || substr($uri->route(), 0,
-                strlen($base) + 1) == $base . '/'
-        ) {
-            return true;
-        }
-
-        return false;
     }
 }
