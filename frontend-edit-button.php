@@ -112,7 +112,7 @@ class FrontendEditButtonPlugin extends Plugin
             return;
         }
 
-		$page = $this->grav['page'];
+	$page = $this->grav['page'];
         $header = $page->header();
 
         if (isset($header->protectEdit) && $header->protectEdit == true) {
@@ -135,7 +135,8 @@ class FrontendEditButtonPlugin extends Plugin
             $pageUrl .= $page->slug();
         }
 
-        $editUrl = '/admin/pages' . $pageUrl;
+	$uri = $this->grav['uri'];
+        $editUrl = $uri->url . '/admin/pages' . $pageUrl;	    
 
         $params = array(
             'config'     => $this->_config,
