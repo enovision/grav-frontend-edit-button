@@ -1,3 +1,13 @@
+# v1.0.3
+##  18/10/2017
+
+1. [](#bugfix)
+    * Solved problem with wrong URL of page to be edited when
+      Grav is installed in a subfolder
+
+# v1.0.2
+  skipped
+
 # v1.0.1
 ##  04/08/2017
 
