@@ -11,6 +11,8 @@ IMPORTANT (2): You can't login from this plugin itself. You have to login by usi
 
 It will also work when you have an admin dashboard open in another tab of your browser. The moment you are logged in and are able to edit pages, the button will show up on the frontend pages. The moment you logout you are not able to edit any pages that are at that time displayed. The automatic refresh will prevent this. 
 
+When saving an edited page and by clicking on the preview it will show the page in another tab on your browser. Every time you will edit the page, save it and click back on any preview tab, the content will refresh automatically.
+
 ## Requirements
 
 This plugin requires that you have the following plugins installed and enabled:
@@ -20,9 +22,9 @@ This plugin requires that you have the following plugins installed and enabled:
 
 ## Installation
 
-Installing the _Frontend Edit Button plugin_ can be done in one of two ways. The GPM (Grav Package Manager) installation method enables you to quickly and easily install the plugin with a simple terminal command, while the manual method enables you to do so via a zip file.
+Installing the _Frontend Edit Button plugin_ can be done in different ways. The GPM (Grav Package Manager) installation method enables you to quickly and easily install the plugin with a simple terminal command, while the manual method enables you to do so via a zip file.
 
-### GPM Installation (Preferred)
+### GPM Installation (Preferred) **not active yet !!!! **
 
 The simplest way to install this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's terminal (also called the command line).  From the root of your Grav install type:
 
@@ -30,15 +32,14 @@ The simplest way to install this plugin is via the [Grav Package Manager (GPM)](
 
 This will install the Frontpage Edit Button plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/grav/user/plugins/frontend-edit-button`.
 
-### Manual Installation
+### Git clone (Preferred for now) ###
 
-To install this plugin, just download the zip version of this repository and unzip it under `/your/site/grav/user/plugins`. Then, rename the folder to `frontend-edit-button`. You can find these files on [GitHub](https://github.com/johan-van-de-merwe/grav-plugin-frontend-edit-button) or via [GetGrav.org](http://getgrav.org/downloads/plugins#extras).
+In the user/plugins folder of your site:
+```
+git clone https://github.com/enovision/grav-frontend-edit-button frontend-edit-button
+```
+The **frontend-edit-button** at the the end of the the git clone is important !!! 
 
-You should now have all the plugin files under
-
-    /your/site/grav/user/plugins/frontend-edit-button
-	
-> NOTE: This plugin is a modular component for Grav which requires [Grav](http://github.com/getgrav/grav) and the [Error](https://github.com/getgrav/grav-plugin-error) and [Problems](https://github.com/getgrav/grav-plugin-problems) to operate.
 
 ## Configuration
 

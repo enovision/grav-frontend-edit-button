@@ -9,7 +9,8 @@ function onFocus () {
     }
 }
 
-if (/*@cc_on!@*/false) { // check for Internet Explorer
+// check for Internet Explorer
+if (/*@cc_on!@*/false) { 
     document.onfocusin = onFocus;
     document.onfocusout = onBlur;
 } else {
