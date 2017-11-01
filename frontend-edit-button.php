@@ -136,12 +136,8 @@ class FrontendEditButtonPlugin extends Plugin
         }
 
 	$uri = $this->grav['uri'];
-<<<<<<< HEAD
 
-        $editUrl = $uri->rootUrl(true) . '/admin/pages' . $pageUrl;
-=======
         $editUrl = $uri->rootUrl(true) . '/admin/pages' . $pageUrl;	    
->>>>>>> c1ce9c968a07851675870f92441dedf66f3cb698
 
         $params = array(
             'config'     => $this->_config,
