@@ -24,7 +24,7 @@ This plugin requires that you have the following plugins installed and enabled:
 
 Installing the _Frontend Edit Button plugin_ can be done in different ways. The GPM (Grav Package Manager) installation method enables you to quickly and easily install the plugin with a simple terminal command, while the manual method enables you to do so via a zip file.
 
-### GPM Installation (Preferred) **not active yet !!!! **
+### GPM Installation (Preferred)
 
 The simplest way to install this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's terminal (also called the command line).  From the root of your Grav install type:
 
@@ -32,7 +32,7 @@ The simplest way to install this plugin is via the [Grav Package Manager (GPM)](
 
 This will install the Frontpage Edit Button plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/grav/user/plugins/frontend-edit-button`.
 
-### Git clone (Preferred for now) ###
+### Git clone ###
 
 In the user/plugins folder of your site:
 ```
