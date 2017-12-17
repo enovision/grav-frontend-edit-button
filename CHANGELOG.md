@@ -1,3 +1,15 @@
+# v1.0.4
+##  16-12-2017
+
+1. [](#bugfix)
+    * Solved the hardcoded '/admin' in relocate URL in case the admin route has been modified to something other than '/admin'
+
+2. [](#bugfix)
+    * Updated README.md content
+
+3. [](#bugfix)
+    * Renamed some files
+
 # v1.0.3
 ##  14-10-2017
 
@@ -5,11 +17,11 @@
     * Solved problem when Grav is installed in sub folder
 
 # v1.0.2
-##  18-10-2017
+##  01-11-2017
 
 1. [](#bugfix)
-    * Solved problem with wrong URL of page to be edited when
-      Grav is installed in a subfolder
+    * Solved issue when Grav is installed in sub folder 
+
 
 # v1.0.1
 ##  04-08-2017
