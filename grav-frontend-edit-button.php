@@ -15,10 +15,10 @@ use Grav\Common\Page;
 use RocketTheme\Toolbox\Event\Event;
 
 /**
- * Class FrontendEditButtonPlugin
+ * Class GravFrontendEditButtonPlugin
  * @package Grav\Plugin
  */
-class FrontendEditButtonPlugin extends Plugin
+class GravFrontendEditButtonPlugin extends Plugin
 {
 
     private $_config = NULL;
