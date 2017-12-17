@@ -126,7 +126,7 @@ class GravFrontendEditButtonPlugin extends Plugin
 
         $twig = $this->grav['twig'];
 
-        $position = $this->config->get('plugins.frontend-edit-button.position');
+        $position = $this->config->get('plugins.grav-frontend-edit-button.position');
 
         $vertical = substr($position, 0, 1) === 't' ? 'top' : 'bottom';
         $horizontal = substr($position, 1, 1) === 'l' ? 'left' : 'right';
