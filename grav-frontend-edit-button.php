@@ -183,9 +183,9 @@ class GravFrontendEditButtonPlugin extends Plugin
         }
 
         $this->grav['assets']
-            ->addCss('plugin://frontend-edit-button/css-compiled/style.css');
+            ->addCss('plugin://grav-frontend-edit-button/css-compiled/style.css');
         $this->grav['assets']
-            ->addJs('plugin://frontend-edit-button/js/script.js');
+            ->addJs('plugin://grav-frontend-edit-button/js/script.js');
     }
 
     /**
