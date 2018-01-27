@@ -1,5 +1,5 @@
 name: Frontend Edit Button
-version: 1.0.4
+version: 1.0.5
 description: Adds an 'edit this page' on the frontend when logged in as administrator
 icon: newspaper-o
 author:
@@ -9,7 +9,7 @@ author:
 homepage: https://github.com/enovision/grav-frontend-edit-button
 keywords: grav, plugin, frontend
 bugs: https://github.com/enovision/grav-frontend-edit-button/issues
-docs: https://github.com/enovision/grav-frontend-edit-button/blob/develop/README.md
+docs: https://github.com/enovision/grav-frontend-edit-button/blob/master/README.md
 license: MIT
 
 form:

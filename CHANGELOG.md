@@ -1,3 +1,12 @@
+# v1.0.5
+##  27-01-2018
+
+1. [](#bugfix)
+    * Solved problem of multilanguage URL redirecting to wrong corresponding URL in backend
+
+2. [](#bugfix)
+    * Updated README.md content
+
 # v1.0.4
 ##  16-12-2017
 
