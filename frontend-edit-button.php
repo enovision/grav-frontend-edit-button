@@ -128,7 +128,8 @@ class FrontendEditButtonPlugin extends Plugin {
 
 		//$pageUrl = $page->url( false, false, true, false );
 		$uri = $this->grav['uri'];
-		$pageUrl = $uri->url(false, false);
+		//$pageUrl = $uri->url(false, false);
+		$pageUrl = $uri->path();
 
 		/* otherwise the home page can't be edited */
 		if ( $pageUrl == '/' ) {
