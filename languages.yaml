@@ -21,6 +21,7 @@ de:
     TOP_RIGHT: Rechtsoben
     BOTTOM_LEFT: Linksuntern
     BOTTOM_RIGHT: Rechtsuntern
+    
 nl:
   PLUGIN_FRONTEND_EDIT_BUTTON:
     POSITION_LABEL: Positie van de button
@@ -32,7 +33,8 @@ nl:
     TOP_RIGHT: Rechtsboven
     BOTTOM_LEFT: Linksonder
     BOTTOM_RIGHT: Rechtsonder
- es:
+    
+es:
   PLUGIN_FRONTEND_EDIT_BUTTON:
     POSITION_LABEL: Posición de etiqueta
     POSITION_LABEL_HELP: Donde poner el botón en la portada
@@ -43,7 +45,8 @@ nl:
     TOP_RIGHT: Arriba a la derecha
     BOTTOM_LEFT: Debajo a la izquierda
     BOTTOM_RIGHT: Debajo a la derecha
- ca:
+    
+ca:
   PLUGIN_FRONTEND_EDIT_BUTTON:
     POSITION_LABEL: Posició d'etiqueta
     POSITION_LABEL_HELP: On posar el botó a la portada
@@ -54,7 +57,8 @@ nl:
     TOP_RIGHT: A dalt a la dreta
     BOTTOM_LEFT: A sota a l'esquerra
     BOTTOM_RIGHT: A sota a la dreta
- fr:
+    
+fr:
   PLUGIN_FRONTEND_EDIT_BUTTON:
     POSITION_LABEL: Position du tag
     POSITION_LABEL_HELP: Où mettre le bouton sur la couverture
@@ -64,4 +68,4 @@ nl:
     TOP_LEFT: En haut à gauche
     TOP_RIGHT: En haut à droite
     BOTTOM_LEFT: Ci-dessous à gauche
-    BOTTOM_RIGHT: Ci-dessous à droite
+    BOTTOM_RIGHT: Ci-dessous à droite    
