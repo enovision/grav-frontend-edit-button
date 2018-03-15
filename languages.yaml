@@ -32,3 +32,36 @@ nl:
     TOP_RIGHT: Rechtsboven
     BOTTOM_LEFT: Linksonder
     BOTTOM_RIGHT: Rechtsonder
+ es:
+  PLUGIN_FRONTEND_EDIT_BUTTON:
+    POSITION_LABEL: Posición de etiqueta
+    POSITION_LABEL_HELP: Donde poner el botón en la portada
+    SHOW_LABEL: Muestra la etiqueta
+    SHOW_ICON: Muestra el icono en el botón
+    BUTTON_TEXT: Editar
+    TOP_LEFT: Arriba a la izquierda
+    TOP_RIGHT: Arriba a la derecha
+    BOTTOM_LEFT: Debajo a la izquierda
+    BOTTOM_RIGHT: Debajo a la derecha
+ ca:
+  PLUGIN_FRONTEND_EDIT_BUTTON:
+    POSITION_LABEL: Posició d'etiqueta
+    POSITION_LABEL_HELP: On posar el botó a la portada
+    SHOW_LABEL: Mostra l'etiqueta
+    SHOW_ICON: Mostra la icona al botó
+    BUTTON_TEXT: Edita
+    TOP_LEFT: A dalt a l'esquerra
+    TOP_RIGHT: A dalt a la dreta
+    BOTTOM_LEFT: A sota a l'esquerra
+    BOTTOM_RIGHT: A sota a la dreta
+ fr:
+  PLUGIN_FRONTEND_EDIT_BUTTON:
+    POSITION_LABEL: Position du tag
+    POSITION_LABEL_HELP: Où mettre le bouton sur la couverture
+    SHOW_LABEL: Afficher le tag
+    SHOW_ICON: Afficher l'icône sur le bouton
+    BUTTON_TEXT: Modifier
+    TOP_LEFT: En haut à gauche
+    TOP_RIGHT: En haut à droite
+    BOTTOM_LEFT: Ci-dessous à gauche
+    BOTTOM_RIGHT: Ci-dessous à droite
