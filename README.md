@@ -1,4 +1,4 @@
-# Frontend Edit Button Plugin
+# Frontend Edit Button Plugin 
 
 The **Frontpage Edit Button** Plugin is for [Grav CMS](http://github.com/getgrav/grav). 
 
