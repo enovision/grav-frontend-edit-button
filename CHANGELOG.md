@@ -1,3 +1,11 @@
+# v1.0.6
+## 15-03-2018
+
+1. [](#bugfix)
+    * Fix for incorrect edit button href
+2. [](#new)
+    * New language Spanish and Catalunian
+
 # v1.0.5
 ##  27-01-2018
 
