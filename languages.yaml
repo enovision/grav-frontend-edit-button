@@ -43,8 +43,8 @@ nl:
     TOP_RIGHT: Rechtsboven
     BOTTOM_LEFT: Linksonder
     BOTTOM_RIGHT: Rechtsonder
-    REQUIRES_AUTH_LABEL: Only visible after login
-    REQUIRES_AUTH_LABEL_HELP: If deactivated, the button will always be shown if the required plugins are active.
+    REQUIRES_AUTH_LABEL: Alleen zichtbaar indien ingelogt
+    REQUIRES_AUTH_LABEL_HELP: Indien inaktief, wordt de button altijd getoond als de plugin aktief is.
 
 es:
   PLUGIN_FRONTEND_EDIT_BUTTON:
@@ -59,8 +59,8 @@ es:
     TOP_RIGHT: Arriba a la derecha
     BOTTOM_LEFT: Debajo a la izquierda
     BOTTOM_RIGHT: Debajo a la derecha
-    REQUIRES_AUTH_LABEL: Only visible after login
-    REQUIRES_AUTH_LABEL_HELP: If deactivated, the button will always be shown if the required plugins are active.
+    REQUIRES_AUTH_LABEL: Solo visible después del inicio de sesión
+    REQUIRES_AUTH_LABEL_HELP: Si se desactiva, el botón siempre se mostrará si los complementos necesarios están activos.
 
 ca:
   PLUGIN_FRONTEND_EDIT_BUTTON:
@@ -75,8 +75,8 @@ ca:
     TOP_RIGHT: A dalt a la dreta
     BOTTOM_LEFT: A sota a l'esquerra
     BOTTOM_RIGHT: A sota a la dreta
-    REQUIRES_AUTH_LABEL: Only visible after login
-    REQUIRES_AUTH_LABEL_HELP: If deactivated, the button will always be shown if the required plugins are active.
+    REQUIRES_AUTH_LABEL: Només visible després d'iniciar sessió
+    REQUIRES_AUTH_LABEL_HELP: Si està desactivat, el botó sempre es mostrarà si els connectors requerits estan actius.
 
 fr:
   PLUGIN_FRONTEND_EDIT_BUTTON:
@@ -91,5 +91,5 @@ fr:
     TOP_RIGHT: En haut à droite
     BOTTOM_LEFT: Ci-dessous à gauche
     BOTTOM_RIGHT: Ci-dessous à droite
-    REQUIRES_AUTH_LABEL: Only visible after login
-    REQUIRES_AUTH_LABEL_HELP: If deactivated, the button will always be shown if the required plugins are active.
+    REQUIRES_AUTH_LABEL: Seulement visible après la connexion
+    REQUIRES_AUTH_LABEL_HELP: Si désactivé, le bouton sera toujours affiché si les plugins requis sont actifs.
