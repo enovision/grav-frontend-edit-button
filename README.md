@@ -140,4 +140,5 @@ There is a languages file available for multilanguage support
 
 ## Credits
 
-The amazing GRAV CMS Team for building such an amazing CMS.
+* The amazing GRAV CMS Team for building such an amazing CMS.
+* [Christian Bewernitz](https://github.com/karfau) for adding the login requirement option (version 1.0.7)
