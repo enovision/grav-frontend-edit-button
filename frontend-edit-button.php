@@ -37,6 +37,7 @@ class FrontendEditButtonPlugin extends Plugin {
 	 * @event onPluginsInitialized
 	 *
 	 * It is only allowed to process when:
+	 * - we are not on an admin page already
 	 * - Admin is logged in in any of the other tabs
 	 * - Login plugin is enabled
 	 * - Admin plugin is enabled
@@ -49,9 +50,12 @@ class FrontendEditButtonPlugin extends Plugin {
 			return;
 		}
 
-		$adminCookie = session_name() . '-admin';
-		if ( isset( $_COOKIE[ $adminCookie ] ) === false ) {
-			return;
+		$config = $this->grav['config'];
+		if ($config->get( 'plugins.frontend-edit-button.requiresAuth' )) {
+			$adminCookie = session_name() . '-admin';
+			if ( isset( $_COOKIE[ $adminCookie ] ) === false ) {
+				return;
+			}
 		}
 
 		// check for existence of a user account
@@ -60,14 +64,9 @@ class FrontendEditButtonPlugin extends Plugin {
 
 		// If no users found, stop here !!!
 		if ( $user_check == false || count( (array) $user_check ) == 0 ) {
-			// dump($this->isAdminPath());
-
-			if ( ! $this->isAdminPath() ) {
-				return;
-			}
+			return;
 		}
 
-		$config = $this->grav['config'];
 		$plugins = $config->get( 'plugins' );
 
 		$adminPlugin = isset( $plugins['admin'] ) ? $this->config->get( 'plugins.admin' ) : false;
@@ -136,8 +135,11 @@ class FrontendEditButtonPlugin extends Plugin {
 			$pageUrl .= $page->slug();
 		}
 
-
-		$editUrl = $uri->rootUrl( true ) . $this->adminRoute . '/pages' . $pageUrl;
+		if ( isset( $header->editUrl ) ) {
+			$editUrl = $header->editUrl;
+		} else {
+			$editUrl = $uri->rootUrl( true ) . $this->adminRoute . '/pages' . $pageUrl;
+		}
 
 		$params = array(
 			'config' => $this->_config,
