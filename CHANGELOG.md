@@ -1,3 +1,9 @@
+# v1.0.7
+## 16-03-2018
+
+1. [](#feature)
+    * Optional, if user has to be logged in before showing the button
+
 # v1.0.6
 ## 15-03-2018
 
