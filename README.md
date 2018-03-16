@@ -81,6 +81,11 @@ showIcon: true
 IMPORTANT:
 _When both_ `showLabel` _and_ `showIcon` _are disabled, it will use internally_ `showLabel = true` _automatically_.
 
+Only visible after login
+```yaml
+requiresAuth: true
+```
+
 ## Usage
 
 When the plugin is enabled there is nothing else to do, it will show the button on the frontend pages.
