@@ -42,7 +42,7 @@ class FrontendEditButtonPlugin extends Plugin {
 	 * - Login plugin is enabled
 	 * - Admin plugin is enabled
 	 * - This plugin is enabled (but that it is)
-	 * - Page has no frontmatter: pageProtect: true
+	 * - Page has no frontmatter: protectEdit: true
 	 *
 	 */
 	public function onPluginsInitialized() {
