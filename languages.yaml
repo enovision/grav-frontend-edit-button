@@ -29,6 +29,22 @@ de:
     BOTTOM_RIGHT: Rechtsuntern
     REQUIRES_AUTH_LABEL: Nur anzeigen wen eingeloggt
     REQUIRES_AUTH_LABEL_HELP: Wenn deaktiviert, wird der Button immer angezeigt wenn die benötigten Plugins aktiviert sind.
+		
+hr:
+  PLUGIN_FRONTEND_EDIT_BUTTON:
+    ENABLED: Omogućen
+    DISABLED: Onemogućen
+    POSITION_LABEL: Položaj gumba
+    POSITION_LABEL_HELP: Gdje da postavim gumb na stranici
+    SHOW_LABEL: Prikaži text na gumbu
+    SHOW_ICON: Prikaži ikonu na gumbu
+    BUTTON_TEXT: Uredi ovu stranicu
+    TOP_LEFT: Gore Lijevo
+    TOP_RIGHT: Gore Desno
+    BOTTOM_LEFT: Dolje Lijevo
+    BOTTOM_RIGHT: Dolje Desno
+    REQUIRES_AUTH_LABEL: Vidljiv samo nakon prijave.
+    REQUIRES_AUTH_LABEL_HELP: Ako je deaktiviran, gumb će uvijek biti prikazan ako su potrebni plugini aktivni.
 
 nl:
   PLUGIN_FRONTEND_EDIT_BUTTON:
