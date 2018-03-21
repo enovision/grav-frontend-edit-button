@@ -29,7 +29,7 @@ de:
     BOTTOM_RIGHT: Rechtsuntern
     REQUIRES_AUTH_LABEL: Nur anzeigen wen eingeloggt
     REQUIRES_AUTH_LABEL_HELP: Wenn deaktiviert, wird der Button immer angezeigt wenn die benötigten Plugins aktiviert sind.
-		
+
 hr:
   PLUGIN_FRONTEND_EDIT_BUTTON:
     ENABLED: Omogućen
