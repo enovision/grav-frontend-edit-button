@@ -1,8 +1,9 @@
 $button-color: rgba(255,255,255,0.85);
 $button-color-hover: #fff;
-$button-bg-color: #41bea8;
-$button-bg-color-hover: #5ec8b5;
-$button-border-color: #0ca709;
+$button-bg-color: #0090D9;
+$button-bg-color-hover: #26a1df;
+$button-border-color: $button-bg-color;
+$button-label-color: $button-color;
 
 #frontend-edit-button {
   position: fixed;
@@ -11,7 +12,6 @@ $button-border-color: #0ca709;
 }
 
 #frontend-edit-button .label {
-    background-color: #41bea8;
     font-size: 16px;
 }
 
@@ -48,4 +48,8 @@ $button-border-color: #0ca709;
 .frontend-edit-button:hover {
     background: $button-bg-color-hover;
     color: $button-color-hover;
+}
+
+.icon-feb-editor:before {
+     padding-right: 5px;
 }

@@ -37,11 +37,12 @@ class FrontendEditButtonPlugin extends Plugin {
 	 * @event onPluginsInitialized
 	 *
 	 * It is only allowed to process when:
+	 * - we are not on an admin page already
 	 * - Admin is logged in in any of the other tabs
 	 * - Login plugin is enabled
 	 * - Admin plugin is enabled
 	 * - This plugin is enabled (but that it is)
-	 * - Page has no frontmatter: pageProtect: true
+	 * - Page has no frontmatter: protectEdit: true
 	 *
 	 */
 	public function onPluginsInitialized() {
@@ -49,9 +50,12 @@ class FrontendEditButtonPlugin extends Plugin {
 			return;
 		}
 
-		$adminCookie = session_name() . '-admin';
-		if ( isset( $_COOKIE[ $adminCookie ] ) === false ) {
-			return;
+		$config = $this->grav['config'];
+		if ($config->get( 'plugins.frontend-edit-button.requiresAuth' )) {
+			$adminCookie = session_name() . '-admin';
+			if ( isset( $_COOKIE[ $adminCookie ] ) === false ) {
+				return;
+			}
 		}
 
 		// check for existence of a user account
@@ -60,14 +64,9 @@ class FrontendEditButtonPlugin extends Plugin {
 
 		// If no users found, stop here !!!
 		if ( $user_check == false || count( (array) $user_check ) == 0 ) {
-			// dump($this->isAdminPath());
-
-			if ( ! $this->isAdminPath() ) {
-				return;
-			}
+			return;
 		}
 
-		$config = $this->grav['config'];
 		$plugins = $config->get( 'plugins' );
 
 		$adminPlugin = isset( $plugins['admin'] ) ? $this->config->get( 'plugins.admin' ) : false;
@@ -128,15 +127,21 @@ class FrontendEditButtonPlugin extends Plugin {
 
 		//$pageUrl = $page->url( false, false, true, false );
 		$uri = $this->grav['uri'];
-		$pageUrl = $uri->url(false, false);
+		//$pageUrl = $uri->url(false, false);
+		$pageUrl = $uri->path();
 
 		/* otherwise the home page can't be edited */
 		if ( $pageUrl == '/' ) {
 			$pageUrl .= $page->slug();
 		}
 
+		if ( isset( $header->editUrl ) ) {
+			$editUrl = $header->editUrl;
+		} else {
+			$editUrl = $uri->rootUrl( true ) . $this->adminRoute . '/pages' . $pageUrl;
+		}
 
-		$editUrl = $uri->rootUrl( true ) . $this->adminRoute . '/pages' . $pageUrl;
+		$icon = $uri->base() . '/' . $this->config->get( 'plugins.frontend-edit-button.iconSrc' );
 
 		$params = array(
 			'config' => $this->_config,
@@ -144,7 +149,8 @@ class FrontendEditButtonPlugin extends Plugin {
 			'horizontal' => $horizontal,
 			'vertical' => $vertical,
 			'pageUrl' => $pageUrl,
-			'editUrl' => $editUrl
+			'editUrl' => $editUrl,
+			'icon' => $icon
 		);
 
 		$insertThis = $twig->processTemplate( 'partials/edit-button.html.twig', $params );
@@ -179,7 +185,8 @@ class FrontendEditButtonPlugin extends Plugin {
 		}
 
 		$this->grav['assets']
-			->addCss( 'plugin://frontend-edit-button/css-compiled/style.css' );
+			->addCss( 'plugin://frontend-edit-button/assets/css-compiled/style.css' )
+		    ->addCss( 'plugin://frontend-edit-button/assets/styles.css');
 		$this->grav['assets']
 			->addJs( 'plugin://frontend-edit-button/js/script.js' );
 	}

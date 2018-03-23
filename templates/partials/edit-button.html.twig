@@ -9,10 +9,12 @@
     <div class='page-item' data-nav-id='/grav-cms{{ pageUrl }}'>
         <a class='page-edit frontend-edit-button' target='_blank' href='{{ editUrl }}'>
             {% if _showIcon == true %}
-                <i class='fa fa-edit'></i>
+                <i class='icon-feb-editor'></i>
             {% endif %}
             {% if _showLabel == true %}
-                <span class="label">{{ 'PLUGIN_FRONTEND_EDIT_BUTTON.BUTTON_TEXT'|t }}</span>
+                <span class="label">
+                    {{ 'PLUGIN_FRONTEND_EDIT_BUTTON.BUTTON_TEXT'|t }}
+                </span>
             {% endif %}
         </a>
     </div>

@@ -1,3 +1,25 @@
+# v1.0.8
+## 23-03-2018
+
+1. [](#feature)
+    * Button icon is now an independent font for this plugin
+2. [](#new)
+    * New language Croatian
+
+# v1.0.7
+## 16-03-2018
+
+1. [](#feature)
+    * Optional, if user has to be logged in before showing the button
+
+# v1.0.6
+## 15-03-2018
+
+1. [](#bugfix)
+    * Fix for incorrect edit button href
+2. [](#new)
+    * New language Spanish and Catalunian
+
 # v1.0.5
 ##  27-01-2018
 
