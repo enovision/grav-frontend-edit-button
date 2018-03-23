@@ -73,7 +73,7 @@ Show the label on the button
 showLabel: true
 ```
 
-Show icon (requires Fontawesome to be loaded)
+Show icon (requires Fontawesome to be loaded, it works when you install the plugin `Markdown Font Awesome`)
 ```yaml
 showIcon: true
 ```
