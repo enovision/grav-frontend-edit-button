@@ -3,6 +3,7 @@
 
 1. [](#feature)
     * Take default button if fontAwesome is not available
+2. [](#new)		
 		* New language Croatian
 
 # v1.0.7
