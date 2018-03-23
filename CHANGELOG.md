@@ -1,3 +1,10 @@
+# v1.0.8
+## 23-03-2018
+
+1. [](#feature)
+    * Take default button if fontAwesome is not available
+		* New language Croatian
+
 # v1.0.7
 ## 16-03-2018
 
