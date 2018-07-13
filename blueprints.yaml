@@ -1,5 +1,5 @@
 name: Frontend Edit Button
-version: 1.0.8
+version: 1.0.10
 description: Adds an 'edit this page' on the frontend when logged in as administrator
 icon: newspaper-o
 author:
@@ -67,3 +67,14 @@ form:
         0: PLUGIN_FRONTEND_EDIT_BUTTON.DISABLED
       validate:
         type: bool
+    autoRefresh:
+      type: toggle
+      label: PLUGIN_FRONTEND_EDIT_BUTTON.AUTO_REFRESH_LABEL
+      help: PLUGIN_FRONTEND_EDIT_BUTTON.AUTO_REFRESH_LABEL_HELP
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_FRONTEND_EDIT_BUTTON.ENABLED
+        0: PLUGIN_FRONTEND_EDIT_BUTTON.DISABLED
+      validate:
+        type: bool        

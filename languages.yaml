@@ -13,7 +13,8 @@ en:
     BOTTOM_RIGHT: Bottom Right
     REQUIRES_AUTH_LABEL: Only visible after login
     REQUIRES_AUTH_LABEL_HELP: If deactivated, the button will always be shown if the required plugins are active.
-
+    AUTO_REFRESH_LABEL: Automatic refresh of content
+    AUTO_REFRESH_LABEL_HELP: If activated, content within pages will automatically refreshed when the tab in the browser is clicked.        
 de:
   PLUGIN_FRONTEND_EDIT_BUTTON:
     ENABLED: Aktiviert
@@ -29,6 +30,8 @@ de:
     BOTTOM_RIGHT: Rechtsuntern
     REQUIRES_AUTH_LABEL: Nur anzeigen wen eingeloggt
     REQUIRES_AUTH_LABEL_HELP: Wenn deaktiviert, wird der Button immer angezeigt wenn die benötigten Plugins aktiviert sind.
+    AUTO_REFRESH_LABEL: Automatisch erfrischen von Inhalte
+    AUTO_REFRESH_LABEL_HELP: Wenn aktiviert, Inhalte auf Seiten werden automatisch erfrischt wenn der Reiter im Browser geklickt wird.        
 
 hr:
   PLUGIN_FRONTEND_EDIT_BUTTON:
@@ -45,6 +48,8 @@ hr:
     BOTTOM_RIGHT: Dolje Desno
     REQUIRES_AUTH_LABEL: Vidljiv samo nakon prijave.
     REQUIRES_AUTH_LABEL_HELP: Ako je deaktiviran, gumb će uvijek biti prikazan ako su potrebni plugini aktivni.
+    AUTO_REFRESH_LABEL: Automatic refresh of pages
+    AUTO_REFRESH_LABEL_HELP: If activated, pages will automatically refreshed when the tab in the browser is clicked.        
 
 nl:
   PLUGIN_FRONTEND_EDIT_BUTTON:
@@ -61,6 +66,8 @@ nl:
     BOTTOM_RIGHT: Rechtsonder
     REQUIRES_AUTH_LABEL: Alleen zichtbaar indien ingelogt
     REQUIRES_AUTH_LABEL_HELP: Indien inaktief, wordt de button altijd getoond als de plugin aktief is.
+    AUTO_REFRESH_LABEL: Automatisch updaten van de inhoud
+    AUTO_REFRESH_LABEL_HELP: Indien aktief, inhoud van pagina's wordt automatisch bijgewerkt indien op de tab in de browser wordt geklikt.        
 
 es:
   PLUGIN_FRONTEND_EDIT_BUTTON:
@@ -77,6 +84,8 @@ es:
     BOTTOM_RIGHT: Debajo a la derecha
     REQUIRES_AUTH_LABEL: Solo visible después del inicio de sesión
     REQUIRES_AUTH_LABEL_HELP: Si se desactiva, el botón siempre se mostrará si los complementos necesarios están activos.
+    AUTO_REFRESH_LABEL: Automatic refresh of content
+    AUTO_REFRESH_LABEL_HELP: If activated, content within pages will automatically refreshed when the tab in the browser is clicked.        
 
 ca:
   PLUGIN_FRONTEND_EDIT_BUTTON:
@@ -93,6 +102,8 @@ ca:
     BOTTOM_RIGHT: A sota a la dreta
     REQUIRES_AUTH_LABEL: Només visible després d'iniciar sessió
     REQUIRES_AUTH_LABEL_HELP: Si està desactivat, el botó sempre es mostrarà si els connectors requerits estan actius.
+    AUTO_REFRESH_LABEL: Automatic refresh of content
+    AUTO_REFRESH_LABEL_HELP: If activated, content within pages will automatically refreshed when the tab in the browser is clicked.            
 
 fr:
   PLUGIN_FRONTEND_EDIT_BUTTON:
@@ -109,3 +120,5 @@ fr:
     BOTTOM_RIGHT: Ci-dessous à droite
     REQUIRES_AUTH_LABEL: Seulement visible après la connexion
     REQUIRES_AUTH_LABEL_HELP: Si désactivé, le bouton sera toujours affiché si les plugins requis sont actifs.
+    AUTO_REFRESH_LABEL: Automatic refresh of content
+    AUTO_REFRESH_LABEL_HELP: If activated, content within pages will automatically refreshed when the tab in the browser is clicked.            

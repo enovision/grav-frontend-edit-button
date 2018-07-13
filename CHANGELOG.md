@@ -1,3 +1,16 @@
+# v1.0.10
+## 13-07-2018
+
+1. [](#bugfix)
+    * Button is not displayed anymore when admin has logged out, button disappears after refresh (when clicking the tab with the page)
+ 
+
+# v1.0.9
+## 02-06-2018
+
+1. [](#feature)
+    * Automatic update of the contents in other tabs is now optional
+
 # v1.0.8
 ## 23-03-2018
 
@@ -5,6 +18,7 @@
     * Button icon is now an independent font for this plugin
 2. [](#new)
     * New language Croatian
+
 
 # v1.0.7
 ## 16-03-2018

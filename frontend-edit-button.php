@@ -9,192 +9,289 @@
 
 namespace Grav\Plugin;
 
-use Grav\Common\Plugin;
-use Grav\Common\Uri;
 use Grav\Common\Page;
+use Grav\Common\Plugin;
+use Grav\Plugin\Login\Events\UserLoginEvent;
 use RocketTheme\Toolbox\Event\Event;
 
 /**
  * Class FrontendEditButtonPlugin
  * @package Grav\Plugin
  */
-class FrontendEditButtonPlugin extends Plugin {
+class FrontendEditButtonPlugin extends Plugin
+{
 
-	private $_config    = null;
-	private $adminRoute = '/admin';
+    private $_config = null;
+    private $adminRoute = '/admin';
 
-	/**
-	 * @function getSubscribedEvents
-	 * @return array
-	 */
-	public static function getSubscribedEvents() {
-		return [
-			'onPluginsInitialized' => [ 'onPluginsInitialized', 0 ]
-		];
-	}
+    private $adminCookieSet = false;
+    private $adminCookie = '';
+    private $editUrl = null;
 
-	/**
-	 * @event onPluginsInitialized
-	 *
-	 * It is only allowed to process when:
-	 * - we are not on an admin page already
-	 * - Admin is logged in in any of the other tabs
-	 * - Login plugin is enabled
-	 * - Admin plugin is enabled
-	 * - This plugin is enabled (but that it is)
-	 * - Page has no frontmatter: protectEdit: true
-	 *
-	 */
-	public function onPluginsInitialized() {
-		if ( $this->isAdmin() ) {
-			return;
-		}
+    /**
+     * @function getSubscribedEvents
+     * @return array
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            'onPluginsInitialized' => ['onPluginsInitialized', 0]
+        ];
+    }
 
-		$config = $this->grav['config'];
-		if ($config->get( 'plugins.frontend-edit-button.requiresAuth' )) {
-			$adminCookie = session_name() . '-admin';
-			if ( isset( $_COOKIE[ $adminCookie ] ) === false ) {
-				return;
-			}
-		}
+    /**
+     * @event onPluginsInitialized
+     *
+     * It is only allowed to process when:
+     * - we are not on an admin page already
+     * - Admin is logged in in any of the other tabs
+     * - Login plugin is enabled
+     * - Admin plugin is enabled
+     * - This plugin is enabled (but that it is)
+     * - Page has no frontmatter: protectEdit: true
+     *
+     */
+    public function onPluginsInitialized()
+    {
+        $this->adminCookie = session_name();
 
-		// check for existence of a user account
-		$account_dir = $file_path = $this->grav['locator']->findResource( 'account://' );
-		$user_check = glob( $account_dir . '/*.yaml' );
+        $this->enable([
+            'onUserLogin' => ['onUserLogin', 0],
+            'onUserLogout' => ['onUserLogout', 0]
+        ]);
 
-		// If no users found, stop here !!!
-		if ( $user_check == false || count( (array) $user_check ) == 0 ) {
-			return;
-		}
+        if ($this->isAdmin()) {
+            return;
+        }
 
-		$plugins = $config->get( 'plugins' );
+        $config = $this->grav['config'];
 
-		$adminPlugin = isset( $plugins['admin'] ) ? $this->config->get( 'plugins.admin' ) : false;
-		$loginPlugin = isset( $plugins['login'] ) ? $this->config->get( 'plugins.login' ) : false;
+        if ($config->get('plugins.frontend-edit-button.requiresAuth')) {
+            if (isset($_COOKIE[$this->adminCookie]) === false) {
+                return;
+            }
+            $this->adminCookieSet = true;
+        }
 
-		$this->adminRoute = $adminPlugin !== false ? $adminPlugin['route'] : $this->adminRoute;
 
-		// Works only with the login and admin plugin installed and enabled
-		if ( $adminPlugin === false || $loginPlugin === false ) {
-			return;
-		} else {
-			if ( $adminPlugin['enabled'] === false || $loginPlugin['enabled'] === false ) {
-				return;
-			}
-		}
+        /* Stop if no users exist */
+        if ($this->doAnyUsersExist() === false) {
+            return;
+        }
 
-		$this->enable( [
-			'onPageContentProcessed' => [ 'onPageContentProcessed', 0 ],
-			'onTwigSiteVariables' => [ 'onTwigSiteVariables', 0 ],
-			'onOutputGenerated' => [ 'onOutputGenerated', 0 ],
-			'onTwigTemplatePaths' => [ 'onTwigTemplatePaths', 0 ]
-		] );
-	}
+        $plugins = $config->get('plugins');
 
-	/**
-	 * @event onPageContentProcessed
-	 *
-	 * @param Event $event
-	 */
-	public function onPageContentProcessed( Event $event ) {
-		$page = $event['page'];
-		$this->_config = $this->mergeConfig( $page );
-	}
+        $adminPlugin = isset($plugins['admin']) ? $this->config->get('plugins.admin') : false;
+        $loginPlugin = isset($plugins['login']) ? $this->config->get('plugins.login') : false;
 
-	/**
-	 * @event onOutputGenerated
-	 */
-	public function onOutputGenerated() {
-		if ( $this->isAdmin() ) {
-			return;
-		}
+        $this->adminRoute = $adminPlugin !== false ? $adminPlugin['route'] : $this->adminRoute;
 
-		$page = $this->grav['page'];
-		$header = $page->header();
+        // Works only with the login and admin plugin installed and enabled
+        if ($adminPlugin === false || $loginPlugin === false) {
+            return;
+        } else {
+            if ($adminPlugin['enabled'] === false || $loginPlugin['enabled'] === false) {
+                return;
+            }
+        }
 
-		if ( isset( $header->protectEdit ) && $header->protectEdit == true ) {
-			return;
-		}
+        $this->enable([
+            'onPageContentProcessed' => ['onPageContentProcessed', 0],
+            'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
+            'onOutputGenerated' => ['onOutputGenerated', 0],
+            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
+        ]);
+    }
 
-		$content = $this->grav->output;
+    /**
+     * check for any users, see admin.php
+     */
+    private function doAnyUsersExist()
+    {
+        $account_dir = $file_path = $this->grav['locator']->findResource('account://');
+        $user_check = glob($account_dir . '/*.yaml');
 
-		$twig = $this->grav['twig'];
+        // If no users found, stop here !!!
+        return $user_check == false || count((array)$user_check) == 0 ? false : true;
+    }
 
-		$position = $this->config->get( 'plugins.frontend-edit-button.position' );
+    /**
+     * @event onPageContentProcessed
+     *
+     * @param Event $event
+     */
+    public function onPageContentProcessed(Event $event)
+    {
+        $page = $event['page'];
+        $this->_config = $this->mergeConfig($page);
+    }
 
-		$vertical = substr( $position, 0, 1 ) === 't' ? 'top' : 'bottom';
-		$horizontal = substr( $position, 1, 1 ) === 'l' ? 'left' : 'right';
+    /**
+     * @event onOutputGenerated
+     */
+    public function onOutputGenerated()
+    {
+        if ($this->isAdmin()) {
+            return;
+        }
 
-		//$pageUrl = $page->url( false, false, true, false );
-		$uri = $this->grav['uri'];
-		//$pageUrl = $uri->url(false, false);
-		$pageUrl = $uri->path();
+        // frontend !!!
+        $this->adminCookie = session_name() . '-admin-authenticated';
 
-		/* otherwise the home page can't be edited */
-		if ( $pageUrl == '/' ) {
-			$pageUrl .= $page->slug();
-		}
+        $page = $this->grav['page'];
 
-		if ( isset( $header->editUrl ) ) {
-			$editUrl = $header->editUrl;
-		} else {
-			$editUrl = $uri->rootUrl( true ) . $this->adminRoute . '/pages' . $pageUrl;
-		}
+        $header = $page->header();
 
-		$icon = $uri->base() . '/' . $this->config->get( 'plugins.frontend-edit-button.iconSrc' );
+        if (isset($header->protectEdit) && $header->protectEdit == true) {
+            return;
+        }
 
-		$params = array(
-			'config' => $this->_config,
-			'header' => $header,
-			'horizontal' => $horizontal,
-			'vertical' => $vertical,
-			'pageUrl' => $pageUrl,
-			'editUrl' => $editUrl,
-			'icon' => $icon
-		);
+        $content = $this->grav->output;
 
-		$insertThis = $twig->processTemplate( 'partials/edit-button.html.twig', $params );
+        $twig = $this->grav['twig'];
 
-		$pos = strpos( $content, '<body', 0 );
+        $position = $this->config->get('plugins.frontend-edit-button.position');
 
-		if ( $pos > 0 ) {
+        $vertical = substr($position, 0, 1) === 't' ? 'top' : 'bottom';
+        $horizontal = substr($position, 1, 1) === 'l' ? 'left' : 'right';
 
-			$pos = strpos( $content, '>', $pos );
+        //$pageUrl = $page->url( false, false, true, false );
+        $uri = $this->grav['uri'];
+        //$pageUrl = $uri->url(false, false);
+        $pageUrl = $uri->path();
 
-			if ( $pos > 0 ) {
+        /* otherwise the home page can't be edited */
+        if ($pageUrl == '/') {
+            $pageUrl .= $page->slug();
+        }
 
-				$str1 = substr( $content, 0, $pos + 1 );
-				$str2 = substr( $content, $pos + 1 );
+        if (isset($header->editUrl)) {
+            $editUrl = $header->editUrl;
+        } else {
+            $editUrl = $uri->rootUrl(true) . $this->adminRoute . '/pages' . $pageUrl;
+        }
 
-				$content = $str1 . $insertThis . $str2;
+        $this->editUrl = $editUrl;
 
-				$this->grav->output = $content;
-			}
-		}
-	}
+        $icon = $uri->base() . '/' . $this->config->get('plugins.frontend-edit-button.iconSrc');
 
-	/**
-	 * @event onTwigSiteVariables
-	 */
-	public function onTwigSiteVariables() {
-		$page = $this->grav['page'];
-		$header = $page->header();
+        /* Inserted: 13.07.2018 */
+        $this->adminCookieSet = false;
 
-		if ( isset( $header->protectEdit ) && $header->protectEdit == true ) {
-			return;
-		}
+        if ($this->config->get('plugins.frontend-edit-button.requiresAuth')) {
+            if (isset($_COOKIE[$this->adminCookie]) === true) {
+                $this->adminCookieSet = true;
+            }
+        } else {
+            $this->adminCookieSet = true;
+        }
+        /* End inserted: 13.07.2018 */
 
-		$this->grav['assets']
-			->addCss( 'plugin://frontend-edit-button/assets/css-compiled/style.css' )
-		    ->addCss( 'plugin://frontend-edit-button/assets/styles.css');
-		$this->grav['assets']
-			->addJs( 'plugin://frontend-edit-button/js/script.js' );
-	}
+        $params = array(
+            'config' => $this->_config,
+            'header' => $header,
+            'horizontal' => $horizontal,
+            'vertical' => $vertical,
+            'pageUrl' => $pageUrl,
+            'editUrl' => $editUrl,
+            'icon' => $icon,
+            'adminCookieSet' => $this->adminCookieSet
+        );
 
-	/**
-	 * @event onTwigTemplatePaths
-	 */
-	public function onTwigTemplatePaths() {
-		$this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
-	}
+        $insertThis = $twig->processTemplate('partials/edit-button.html.twig', $params);
+
+        $pos = strpos($content, '<body', 0);
+
+        if ($pos > 0) {
+
+            $pos = strpos($content, '>', $pos);
+
+            if ($pos > 0) {
+
+                $str1 = substr($content, 0, $pos + 1);
+                $str2 = substr($content, $pos + 1);
+
+                $content = $str1 . $insertThis . $str2;
+
+                $this->grav->output = $content;
+            }
+        }
+    }
+
+    /**
+     * @event onTwigSiteVariables
+     */
+    public function onTwigSiteVariables()
+    {
+        $page = $this->grav['page'];
+        $header = $page->header();
+
+        if (isset($header->protectEdit) && $header->protectEdit == true) {
+            return;
+        }
+
+        $this->grav['assets']
+            ->addCss('plugin://frontend-edit-button/assets/css-compiled/style.css')
+            ->addCss('plugin://frontend-edit-button/assets/styles.css');
+
+        if ($this->config->get('plugins.frontend-edit-button.autoRefresh') === true) {
+            $this->grav['assets']
+                ->addJs('plugin://frontend-edit-button/js/script.js');
+        }
+    }
+
+    /**
+     * @event onTwigTemplatePaths
+     */
+    public function onTwigTemplatePaths()
+    {
+        $this->grav['twig']->twig_paths[] = __DIR__ . '/templates';
+    }
+
+    /**
+     * @event onUserLogout
+     *
+     * Hook on onUserLogout of the Login plugin
+     * It should remove the cookie
+     */
+    public function onUserLogout(UserLoginEvent $event)
+    {
+        $user = $event->getUser();
+
+        $params = session_get_cookie_params();
+        $cookieName = session_name() . '-authenticated';
+
+        setcookie(
+            $cookieName,
+            session_id(),
+            time() - 42000,
+            $params['path'],
+            $params['domain'],
+            $params['secure'],
+            $params['httponly']
+        );
+    }
+
+    public function onUserLogin(UserLoginEvent $event)
+    {
+        $user = $event->getUser();
+
+        if ($user->authenticated) {
+
+            $params = session_get_cookie_params();
+            $cookieName = session_name() . '-authenticated';
+
+            setcookie(
+                $cookieName,
+                session_id(),
+                time() + $params['lifetime'],
+                $params['path'],
+                $params['domain'],
+                $params['secure'],
+                $params['httponly']
+            );
+
+        }
+    }
+
 }
