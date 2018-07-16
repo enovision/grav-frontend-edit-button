@@ -175,17 +175,7 @@ class FrontendEditButtonPlugin extends Plugin
 
         $icon = $uri->base() . '/' . $this->config->get('plugins.frontend-edit-button.iconSrc');
 
-        /* Inserted: 13.07.2018 */
-        $this->adminCookieSet = false;
-
-        if ($this->config->get('plugins.frontend-edit-button.requiresAuth')) {
-            if (isset($_COOKIE[$this->adminCookie]) === true) {
-                $this->adminCookieSet = true;
-            }
-        } else {
-            $this->adminCookieSet = true;
-        }
-        /* End inserted: 13.07.2018 */
+        $adminCookie = $this->getAdminCookie();
 
         $params = array(
             'config' => $this->_config,
@@ -195,7 +185,7 @@ class FrontendEditButtonPlugin extends Plugin
             'pageUrl' => $pageUrl,
             'editUrl' => $editUrl,
             'icon' => $icon,
-            'adminCookieSet' => $this->adminCookieSet
+            'adminCookieSet' => $adminCookie
         );
 
         $insertThis = $twig->processTemplate('partials/edit-button.html.twig', $params);
@@ -218,6 +208,20 @@ class FrontendEditButtonPlugin extends Plugin
         }
     }
 
+    private function getAdminCookie() {
+        $this->adminCookieSet = false;
+
+        if ($this->config->get('plugins.frontend-edit-button.requiresAuth')) {
+            if (isset($_COOKIE[$this->adminCookie]) === true) {
+                $this->adminCookieSet = true;
+            }
+        } else {
+            $this->adminCookieSet = true;
+        }
+
+        return $this->adminCookieSet;
+    }
+
     /**
      * @event onTwigSiteVariables
      */
@@ -230,11 +234,14 @@ class FrontendEditButtonPlugin extends Plugin
             return;
         }
 
+        $this->adminCookie = session_name() . '-admin-authenticated';
+        $adminCookie = $this->getAdminCookie();
+
         $this->grav['assets']
             ->addCss('plugin://frontend-edit-button/assets/css-compiled/style.css')
             ->addCss('plugin://frontend-edit-button/assets/styles.css');
 
-        if ($this->config->get('plugins.frontend-edit-button.autoRefresh') === true) {
+        if ($this->config->get('plugins.frontend-edit-button.autoRefresh') === true && $adminCookie === true)  {
             $this->grav['assets']
                 ->addJs('plugin://frontend-edit-button/js/script.js');
         }

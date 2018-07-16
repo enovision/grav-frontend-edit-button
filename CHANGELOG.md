@@ -1,3 +1,9 @@
+# v1.0.11
+## 16-07-2018
+
+1. [](#bugfix)
+    * Corrected that page kept on refreshing, even after logged out. Now it refreshes 1 time after logging out to remove the button and the JavaScript to reload the page.
+
 # v1.0.10
 ## 13-07-2018
 
