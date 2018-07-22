@@ -188,7 +188,11 @@ class FrontendEditButtonPlugin extends Plugin
             'adminCookieSet' => $adminCookie
         );
 
-        $insertThis = $twig->processTemplate('partials/edit-button.html.twig', $params);
+        if ($adminCookie) {
+            $insertThis = $twig->processTemplate('partials/edit-button.html.twig', $params);
+        } else {
+            $insertThis = ''; // no cookie is set
+        }
 
         $pos = strpos($content, '<body', 0);
 

@@ -1,3 +1,9 @@
+# v1.0.12
+## 22-07-2018
+
+1. [](#bugfix)
+    * Corrected that the button still was showing sometimes, even after the admin was logged out. (Paul Hibbits, thanks for noticing)
+
 # v1.0.11
 ## 16-07-2018
 
