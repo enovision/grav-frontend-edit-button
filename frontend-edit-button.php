@@ -28,6 +28,9 @@ class FrontendEditButtonPlugin extends Plugin
     private $adminCookie = '';
     private $editUrl = null;
 
+    // private $adminCookieSuffix = '-admin-authenticated'; // till version 1.12
+    private $adminCookieSuffix = '-admin';    // since version 1.12.1
+
     /**
      * @function getSubscribedEvents
      * @return array
@@ -136,7 +139,9 @@ class FrontendEditButtonPlugin extends Plugin
         }
 
         // frontend !!!
-        $this->adminCookie = session_name() . '-admin-authenticated';
+        // $this->adminCookie = session_name() . '-admin-authenticated'; // till version 1.12
+        $this->adminCookie = session_name() . $this->adminCookieSuffix; // since version 1.12.1
+
 
         $page = $this->grav['page'];
 
@@ -188,11 +193,7 @@ class FrontendEditButtonPlugin extends Plugin
             'adminCookieSet' => $adminCookie
         );
 
-        if ($adminCookie) {
-            $insertThis = $twig->processTemplate('partials/edit-button.html.twig', $params);
-        } else {
-            $insertThis = ''; // no cookie is set
-        }
+        $insertThis = $twig->processTemplate('partials/edit-button.html.twig', $params);
 
         $pos = strpos($content, '<body', 0);
 
@@ -238,7 +239,7 @@ class FrontendEditButtonPlugin extends Plugin
             return;
         }
 
-        $this->adminCookie = session_name() . '-admin-authenticated';
+        $this->adminCookie = session_name() . $this->adminCookieSuffix;
         $adminCookie = $this->getAdminCookie();
 
         $this->grav['assets']
@@ -270,7 +271,8 @@ class FrontendEditButtonPlugin extends Plugin
         $user = $event->getUser();
 
         $params = session_get_cookie_params();
-        $cookieName = session_name() . '-authenticated';
+        // $cookieName = session_name() . '-authenticated'; // till version 1.12
+        $cookieName = session_name(); // since version 1.12.1
 
         setcookie(
             $cookieName,
@@ -290,7 +292,8 @@ class FrontendEditButtonPlugin extends Plugin
         if ($user->authenticated) {
 
             $params = session_get_cookie_params();
-            $cookieName = session_name() . '-authenticated';
+            // $cookieName = session_name() . '-authenticated'; // till version 1.12
+            $cookieName = session_name(); // since version 1.12.1
 
             setcookie(
                 $cookieName,

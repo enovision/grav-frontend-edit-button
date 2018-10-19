@@ -1,3 +1,10 @@
+# v1.0.12.1
+## 19-10-2018
+
+1. [](#bugfix)
+    * Corrected the check if admin is logged on. In the former version the button was not on shown when not logged in.
+    * Version 1.12 (former version) is not working with release 1.5 and later of Grav CMS. 
+
 # v1.0.12
 ## 22-07-2018
 
