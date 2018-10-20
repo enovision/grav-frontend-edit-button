@@ -6,7 +6,7 @@ en:
     POSITION_LABEL_HELP: Where to put the button on the frontend
     SHOW_LABEL: Show text on button
     SHOW_ICON: Show icon on button
-    BUTTON_TEXT: Edit this page
+    BUTTON_TEXT: Edit this Page
     TOP_LEFT: Top Left
     TOP_RIGHT: Top Right
     BOTTOM_LEFT: Bottom Left
