@@ -1,3 +1,16 @@
+# v1.2.1
+## 28-10-2018
+
+1. [](#bug)
+    * [solved] Button was not removed, even when admin cookie did not exist (anymore)
+
+# v1.2
+## 25-10-2018
+
+1. [](#modification)
+    * Restructuring of the assets folder and combined sass/css.
+    * Corrected bug where button was only shown after doing a page refresh
+
 # v1.0.12.1
 ## 19-10-2018
 

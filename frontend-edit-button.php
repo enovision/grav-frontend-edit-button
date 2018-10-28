@@ -59,7 +59,7 @@ class FrontendEditButtonPlugin extends Plugin
         $this->adminCookie = session_name();
 
         $this->enable([
-            'onUserLogin' => ['onUserLogin', 0],
+            'onUserLogin'  => ['onUserLogin', 0],
             'onUserLogout' => ['onUserLogout', 0]
         ]);
 
@@ -75,7 +75,6 @@ class FrontendEditButtonPlugin extends Plugin
             }
             $this->adminCookieSet = true;
         }
-
 
         /* Stop if no users exist */
         if ($this->doAnyUsersExist() === false) {
@@ -100,9 +99,9 @@ class FrontendEditButtonPlugin extends Plugin
 
         $this->enable([
             'onPageContentProcessed' => ['onPageContentProcessed', 0],
-            'onTwigSiteVariables' => ['onTwigSiteVariables', 0],
-            'onOutputGenerated' => ['onOutputGenerated', 0],
-            'onTwigTemplatePaths' => ['onTwigTemplatePaths', 0]
+            'onTwigSiteVariables'    => ['onTwigSiteVariables', 0],
+            'onOutputGenerated'      => ['onOutputGenerated', 0],
+            'onTwigTemplatePaths'    => ['onTwigTemplatePaths', 0]
         ]);
     }
 
@@ -142,12 +141,13 @@ class FrontendEditButtonPlugin extends Plugin
         // $this->adminCookie = session_name() . '-admin-authenticated'; // till version 1.12
         $this->adminCookie = session_name() . $this->adminCookieSuffix; // since version 1.12.1
 
-
         $page = $this->grav['page'];
 
         $header = $page->header();
 
-        if (isset($header->protectEdit) && $header->protectEdit == true) {
+        $adminCookie = $this->getAdminCookie();
+
+        if ((isset($header->protectEdit) && $header->protectEdit == true) || $adminCookie === false) {
             return;
         }
 
@@ -180,16 +180,14 @@ class FrontendEditButtonPlugin extends Plugin
 
         $icon = $uri->base() . '/' . $this->config->get('plugins.frontend-edit-button.iconSrc');
 
-        $adminCookie = $this->getAdminCookie();
-
         $params = array(
-            'config' => $this->_config,
-            'header' => $header,
-            'horizontal' => $horizontal,
-            'vertical' => $vertical,
-            'pageUrl' => $pageUrl,
-            'editUrl' => $editUrl,
-            'icon' => $icon,
+            'config'         => $this->_config,
+            'header'         => $header,
+            'horizontal'     => $horizontal,
+            'vertical'       => $vertical,
+            'pageUrl'        => $pageUrl,
+            'editUrl'        => $editUrl,
+            'icon'           => $icon,
             'adminCookieSet' => $adminCookie
         );
 
@@ -213,7 +211,8 @@ class FrontendEditButtonPlugin extends Plugin
         }
     }
 
-    private function getAdminCookie() {
+    private function getAdminCookie()
+    {
         $this->adminCookieSet = false;
 
         if ($this->config->get('plugins.frontend-edit-button.requiresAuth')) {
@@ -243,12 +242,12 @@ class FrontendEditButtonPlugin extends Plugin
         $adminCookie = $this->getAdminCookie();
 
         $this->grav['assets']
-            ->addCss('plugin://frontend-edit-button/assets/css-compiled/style.css')
-            ->addCss('plugin://frontend-edit-button/assets/styles.css');
+            ->addCss('plugin://frontend-edit-button/assets/css/style.min.css');
+        //'->addCss('plugin://frontend-edit-button/assets/styles.css');
 
-        if ($this->config->get('plugins.frontend-edit-button.autoRefresh') === true && $adminCookie === true)  {
+        if ($this->config->get('plugins.frontend-edit-button.autoRefresh') === true && $adminCookie === true) {
             $this->grav['assets']
-                ->addJs('plugin://frontend-edit-button/js/script.js');
+                ->addJs('plugin://frontend-edit-button/assets/js/script.js');
         }
     }
 
