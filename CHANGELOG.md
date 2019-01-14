@@ -1,3 +1,9 @@
+# v1.2.2
+## 14-01-2019
+
+1. [](#bug)
+    * [solved] Problem with assets organization solved, button sometimes didn't show properly
+
 # v1.2.1
 ## 28-10-2018
 

@@ -26,7 +26,7 @@ Installing the _Frontend Edit Button plugin_ can be done in different ways. The 
 
 The simplest way to install this plugin is via the [Grav Package Manager (GPM)](http://learn.getgrav.org/advanced/grav-gpm) through your system's terminal (also called the command line).  From the root of your Grav install type:
 
-    bin/gpm install frontend-edit-button
+    bin/gpm install grav-frontend-edit-button
 
 This will install the Frontpage Edit Button plugin into your `/user/plugins` directory within Grav. Its files can be found under `/your/site/grav/user/plugins/grav-frontend-edit-button`.
 
@@ -136,8 +136,8 @@ It is required that the following CSS tags stay intact:
 }
 ```
 
-You can compile the SASS by entering in the root of this plugin
-`sh scss.sh`. It is required that you have the compiler installed.
+You can compile the SASS by entering in the root of /assets folder of this plugin
+`./sass.cmd`. It is required that you have the compiler installed.
 
 ## i18n
 

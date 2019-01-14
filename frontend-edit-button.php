@@ -242,8 +242,7 @@ class FrontendEditButtonPlugin extends Plugin
         $adminCookie = $this->getAdminCookie();
 
         $this->grav['assets']
-            ->addCss('plugin://frontend-edit-button/assets/css/style.min.css');
-        //'->addCss('plugin://frontend-edit-button/assets/styles.css');
+            ->addCss('plugin://frontend-edit-button/assets/css/style.css');
 
         if ($this->config->get('plugins.frontend-edit-button.autoRefresh') === true && $adminCookie === true) {
             $this->grav['assets']
