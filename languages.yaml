@@ -122,3 +122,21 @@ fr:
     REQUIRES_AUTH_LABEL_HELP: Si désactivé, le bouton sera toujours affiché si les plugins requis sont actifs.
     AUTO_REFRESH_LABEL: Automatic refresh of content
     AUTO_REFRESH_LABEL_HELP: If activated, content within pages will automatically refreshed when the tab in the browser is clicked.            
+
+pt:
+  PLUGIN_FRONTEND_EDIT_BUTTON:
+    ENABLED: Habilitado
+    DISABLED: Desabilitado
+    POSITION_LABEL: Posição do texto
+    POSITION_LABEL_HELP: Onde posicionar o botão no frontend
+    SHOW_LABEL: Mostrar texto do botão
+    SHOW_ICON: Mostrar ícone do botão
+    BUTTON_TEXT: Editar esta página
+    TOP_LEFT: No topo à esquerda
+    TOP_RIGHT: No topo à direita
+    BOTTOM_LEFT: Embaixo à esquerda
+    BOTTOM_RIGHT: Embaixo à direita
+    REQUIRES_AUTH_LABEL: Apenas visível após login
+    REQUIRES_AUTH_LABEL_HELP: Se desativado, o botão sempre será mostrado se os plugins necessários estiverem ativos.
+    AUTO_REFRESH_LABEL: Atualização automática de conteúdo
+    AUTO_REFRESH_LABEL_HELP: Se ativado, o conteúdo das páginas será atualizado automaticamente quando a aba do navegador for clicada.
