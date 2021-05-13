@@ -1,3 +1,9 @@
+# v1.2.3
+## 12-05-2021
+
+1. [](#modification)
+    * [solved] Portugese translation added
+
 # v1.2.2
 ## 14-01-2019
 
